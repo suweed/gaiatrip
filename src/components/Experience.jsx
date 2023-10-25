@@ -60,7 +60,7 @@ export const Experience = () => {
     <>
       <group ref={cameraGroup}>
         <Background />
-        <PerspectiveCamera position={[0, 0, 5]} fov={30} makeDefault />
+        <PerspectiveCamera position={[0, 0, 5]} fov={50} makeDefault />
         <Van rotation-y={Math.PI / 0.99} position={[0, -1, -2]} scale={[0.6, 0.6, 0.6]} />
       </group>
 
@@ -88,9 +88,9 @@ export const Experience = () => {
         </mesh>
       </group>
 
-      <Eames opacity={0.5} scale={[0.3, 0.3, 0.3]} position={[-2, 1, -3]} />
-      <Eames opacity={0.5} scale={[0.2, 0.3, 0.4]} position={[1.5, -0.5, -2]} />
-      <Eames opacity={0.7} scale={[0.3, 0.3, 0.4]} position={[2, -0.2, -2]} rotation-y={Math.PI / 9} />
+      <Eames opacity={0.5} scale={[0.3, 0.3, 0.3]} position={[-2, 1, -10]} />
+      <Eames opacity={0.5} scale={[0.2, 0.3, 0.4]} position={[1.5, -0.5, -18]} />
+      <Eames opacity={0.7} scale={[0.3, 0.3, 0.4]} position={[2, -0.2, -16]} rotation-y={Math.PI / 9} />
     </>
   );
 };
