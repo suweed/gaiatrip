@@ -87,10 +87,6 @@ export const Experience = () => {
           <meshStandardMaterial color={"white"} opacity={0.7} transparent />
         </mesh>
       </group>
-
-      <Eames opacity={0.5} scale={[0.3, 0.3, 0.3]} position={[-2, 1, -10]} />
-      <Eames opacity={0.5} scale={[0.2, 0.3, 0.4]} position={[1.5, -0.5, -18]} />
-      <Eames opacity={0.7} scale={[0.3, 0.3, 0.4]} position={[2, -0.2, -16]} rotation-y={Math.PI / 9} />
     </>
   );
 };
