@@ -61,7 +61,6 @@ export const Experience = () => {
       <group ref={cameraGroup}>
         <Background />
         <PerspectiveCamera position={[0, 0, 5]} fov={50} makeDefault />
-        <Van rotation-y={Math.PI / 0.99} position={[0, -1, -2]} scale={[0.6, 0.6, 0.6]} />
       </group>
 
       {/* LINE */}
