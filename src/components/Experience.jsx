@@ -514,9 +514,14 @@ We have a wide range of beverages!`,
               makeDefault
             />
           </group>
-          
           <group ref={airplane}>
-            <Van rotation-y={Math.PI / 1} scale={[0.2, 0.2, 0.2]} position-y={-1} />
+            <Float floatIntensity={1} speed={1.5} rotationIntensity={0.5}>
+              <Airplane
+                rotation-y={Math.PI / 2}
+                scale={[0.2, 0.2, 0.2]}
+                position-y={0.1}
+              />
+            </Float>
           </group>
         </group>
         {/* TEXT */}
