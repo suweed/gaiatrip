@@ -418,14 +418,14 @@ We have a wide range of beverages!`,
     airplane.current.quaternion.slerp(targetAirplaneQuaternion, delta * 2);
 
     // van
-    const targetVanQuaternion = new THREE.Quaternion().setFromEuler(
+    /*const targetVanQuaternion = new THREE.Quaternion().setFromEuler(
       new THREE.Euler(
         van.current.rotation.x,
         van.current.rotation.y,
         angle
       )
     );
-    van.current.quaternion.slerp(targetVanQuaternion, delta * 2);
+    van.current.quaternion.slerp(targetVanQuaternion, delta * 2);*/
 
     if (
       cameraGroup.current.position.z <
@@ -433,7 +433,7 @@ We have a wide range of beverages!`,
     ) {
       setEnd(true);
       planeOutTl.current.play();
-      vanOutTl.current.play();
+      //vanOutTl.current.play();
     }
   });
 
@@ -482,13 +482,13 @@ We have a wide range of beverages!`,
       y: -2,
     });
 
-    vanInTl.current = gsap.timeline();
+    /*vanInTl.current = gsap.timeline();
     vanInTl.current.pause();
     vanInTl.current.from(van.current.position, {
       duration: 3,
       z: 5,
       y: -2,
-    });
+    });*/
 
     planeOutTl.current = gsap.timeline();
     planeOutTl.current.pause();
@@ -516,7 +516,7 @@ We have a wide range of beverages!`,
     });
 
 
-    vanOutTl.current = gsap.timeline();
+    /*vanOutTl.current = gsap.timeline();
     vanOutTl.current.pause();
 
     vanOutTl.current.to(
@@ -539,13 +539,13 @@ We have a wide range of beverages!`,
     vanOutTl.current.to(van.current.position, {
       duration: 1,
       z: -1000,
-    });
+    });*/
   }, []);
 
   useEffect(() => {
     if (play) {
       planeInTl.current.play();
-      vanInTl.current.play();
+      //vanInTl.current.play();
     }
   }, [play]);
 
@@ -572,9 +572,7 @@ We have a wide range of beverages!`,
                 position-y={0.1}
               />
             </Float>
-          </group>
-          <group ref={van}>
-            <Van rotation-y={Math.PI / 2} scale={[0.2, 0.2, 0.2]} position-y={0.1} />
+            <Van rotation-y={Math.PI / 2} scale={[0.1, 0.1, 0.1]} position-y={0.1} />
           </group>
         </group>
         {/* TEXT */}
