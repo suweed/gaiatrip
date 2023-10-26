@@ -14,7 +14,7 @@ import { TextSection } from "./TextSection";
 
 import { Van } from "./Van";
 
-const LINE_NB_POINTS = 1000;
+const LINE_NB_POINTS = 2000;
 const CURVE_DISTANCE = 250;
 const CURVE_AHEAD_CAMERA = 0.008;
 const CURVE_AHEAD_AIRPLANE = 0.02;
@@ -265,8 +265,8 @@ We have a wide range of beverages!`,
 
   const shape = useMemo(() => {
     const shape = new THREE.Shape();
-    shape.moveTo(0, -0.08);
-    shape.lineTo(0, 0.08);
+    shape.moveTo(0, -1);
+    shape.lineTo(0, 1);
 
     return shape;
   }, [curve]);
@@ -417,29 +417,16 @@ We have a wide range of beverages!`,
     );
     airplane.current.quaternion.slerp(targetAirplaneQuaternion, delta * 2);
 
-    // van
-    /*const targetVanQuaternion = new THREE.Quaternion().setFromEuler(
-      new THREE.Euler(
-        van.current.rotation.x,
-        van.current.rotation.y,
-        angle
-      )
-    );
-    van.current.quaternion.slerp(targetVanQuaternion, delta * 2);*/
-
     if (
       cameraGroup.current.position.z <
       curvePoints[curvePoints.length - 1].z + 100
     ) {
       setEnd(true);
       planeOutTl.current.play();
-      //vanOutTl.current.play();
     }
   });
 
   const airplane = useRef();
-
-  const van = useRef();
 
   const tl = useRef();
   const backgroundColors = useRef({
@@ -449,9 +436,6 @@ We have a wide range of beverages!`,
 
   const planeInTl = useRef();
   const planeOutTl = useRef();
-
-  const vanInTl = useRef();
-  const vanOutTl = useRef();
 
   useLayoutEffect(() => {
     tl.current = gsap.timeline();
@@ -482,14 +466,6 @@ We have a wide range of beverages!`,
       y: -2,
     });
 
-    /*vanInTl.current = gsap.timeline();
-    vanInTl.current.pause();
-    vanInTl.current.from(van.current.position, {
-      duration: 3,
-      z: 5,
-      y: -2,
-    });*/
-
     planeOutTl.current = gsap.timeline();
     planeOutTl.current.pause();
 
@@ -515,37 +491,11 @@ We have a wide range of beverages!`,
       z: -1000,
     });
 
-
-    /*vanOutTl.current = gsap.timeline();
-    vanOutTl.current.pause();
-
-    vanOutTl.current.to(
-      van.current.position,
-      {
-        duration: 10,
-        z: -250,
-        y: 10,
-      },
-      0
-    );
-    vanOutTl.current.to(
-      cameraRail.current.position,
-      {
-        duration: 8,
-        y: 12,
-      },
-      0
-    );
-    vanOutTl.current.to(van.current.position, {
-      duration: 1,
-      z: -1000,
-    });*/
   }, []);
 
   useEffect(() => {
     if (play) {
       planeInTl.current.play();
-      //vanInTl.current.play();
     }
   }, [play]);
 
@@ -572,7 +522,7 @@ We have a wide range of beverages!`,
                 position-y={0.1}
               />
             </Float>
-            <Van rotation-y={Math.PI / 2} scale={[0.1, 0.1, 0.1]} position-y={0.1} />
+            <Van rotation-y={Math.PI / 1} scale={[0.2, 0.2, 0.2]} position-y={-1} />
           </group>
         </group>
         {/* TEXT */}
