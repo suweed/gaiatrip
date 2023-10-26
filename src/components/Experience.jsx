@@ -12,7 +12,7 @@ import { Cloud } from "./Cloud";
 import { Speed } from "./Speed";
 import { TextSection } from "./TextSection";
 
-import { Van } from "./Van";
+import { PaperPlane } from "./PaperPlane";
 
 const LINE_NB_POINTS = 2000;
 const CURVE_DISTANCE = 250;
@@ -265,8 +265,8 @@ We have a wide range of beverages!`,
 
   const shape = useMemo(() => {
     const shape = new THREE.Shape();
-    shape.moveTo(0, -1);
-    shape.lineTo(0, 1);
+    shape.moveTo(0, -0.08);
+    shape.lineTo(0, 0.08);
 
     return shape;
   }, [curve]);
@@ -521,6 +521,7 @@ We have a wide range of beverages!`,
                 scale={[0.2, 0.2, 0.2]}
                 position-y={0.1}
               />
+              <PaperPlane rotation-y={Math.PI / 2} scale={[3, 3, 3]} position-y={0.3} />
             </Float>
           </group>
         </group>
