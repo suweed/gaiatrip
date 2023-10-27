@@ -13,6 +13,8 @@ import { Speed } from "./Speed";
 import { TextSection } from "./TextSection";
 
 import { PaperPlane } from "./PaperPlane";
+import { Eames } from "./Eames";
+import { Sofa } from "./Sofa";
 
 const LINE_NB_POINTS = 2000;
 const CURVE_DISTANCE = 250;
@@ -109,38 +111,12 @@ We have a wide range of beverages!`,
       },
       // FIRST POINT
       {
-        scale: new Vector3(4, 4, 4),
-        position: new Vector3(
-          curvePoints[1].x + 10,
-          curvePoints[1].y - 4,
-          curvePoints[1].z + 64
-        ),
-      },
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[1].x - 20,
-          curvePoints[1].y + 4,
-          curvePoints[1].z + 28
-        ),
-        rotation: new Euler(0, Math.PI / 7, 0),
-      },
-      {
         rotation: new Euler(0, Math.PI / 7, Math.PI / 5),
         scale: new Vector3(5, 5, 5),
         position: new Vector3(
           curvePoints[1].x - 13,
           curvePoints[1].y + 4,
           curvePoints[1].z - 62
-        ),
-      },
-      {
-        rotation: new Euler(Math.PI / 2, Math.PI / 2, Math.PI / 3),
-        scale: new Vector3(5, 5, 5),
-        position: new Vector3(
-          curvePoints[1].x + 54,
-          curvePoints[1].y + 2,
-          curvePoints[1].z - 82
         ),
       },
       {
@@ -152,14 +128,6 @@ We have a wide range of beverages!`,
         ),
       },
       // SECOND POINT
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
-          curvePoints[2].x + 6,
-          curvePoints[2].y - 7,
-          curvePoints[2].z + 50
-        ),
-      },
       {
         scale: new Vector3(2, 2, 2),
         position: new Vector3(
@@ -181,14 +149,6 @@ We have a wide range of beverages!`,
       {
         scale: new Vector3(3, 3, 3),
         position: new Vector3(
-          curvePoints[3].x + 3,
-          curvePoints[3].y - 10,
-          curvePoints[3].z + 50
-        ),
-      },
-      {
-        scale: new Vector3(3, 3, 3),
-        position: new Vector3(
           curvePoints[3].x - 10,
           curvePoints[3].y,
           curvePoints[3].z + 30
@@ -203,24 +163,6 @@ We have a wide range of beverages!`,
           curvePoints[3].z - 8
         ),
         rotation: new Euler(Math.PI, 0, Math.PI / 5),
-      },
-      {
-        scale: new Vector3(5, 5, 5),
-        position: new Vector3(
-          curvePoints[3].x + 0,
-          curvePoints[3].y - 5,
-          curvePoints[3].z - 98
-        ),
-        rotation: new Euler(0, Math.PI / 3, 0),
-      },
-      // FOURTH POINT
-      {
-        scale: new Vector3(2, 2, 2),
-        position: new Vector3(
-          curvePoints[4].x + 3,
-          curvePoints[4].y - 10,
-          curvePoints[4].z + 2
-        ),
       },
       {
         scale: new Vector3(3, 3, 3),
@@ -263,6 +205,38 @@ We have a wide range of beverages!`,
     []
   );
 
+  const eames = useMemo(
+    () => [
+      {
+        rotation: new Euler(-Math.PI / 2, 0, 1),
+        position: new Vector3(-2.5, -2.5, -7),
+        scale: new Vector3(0.3, 0.3, 0.3),
+      },
+      {
+        rotation: new Euler(-Math.PI / 2, 0, -1),
+        position: new Vector3(10, 3, -49),
+        scale: new Vector3(0.3, 0.3, 0.3),
+      }
+    ],
+    []
+  );
+
+  const sofas = useMemo(
+    () => [
+      {
+        scale: new Vector3(5, 5, 5),
+        position: new Vector3(-17, 4, -65),
+        rotation: new Euler(0, 1, 0),
+      },
+      {
+        scale: new Vector3(2.5, 2.5, 2.5),
+        position: new Vector3(4.5, -2.7, -10.2),
+        rotation: new Euler(0, -0.5, 0),
+      },
+    ],
+    []
+  );
+
   const shape = useMemo(() => {
     const shape = new THREE.Shape();
     shape.moveTo(0, -0.08);
@@ -287,7 +261,7 @@ We have a wide range of beverages!`,
     } else {
       // PORTRAIT
       camera.current.fov = 80;
-      camera.current.position.z = 2;
+      camera.current.position.z = 3;
     }
 
     if (lastScroll.current <= 0 && scroll.offset > 0) {
@@ -431,7 +405,7 @@ We have a wide range of beverages!`,
   const tl = useRef();
   const backgroundColors = useRef({
     colorA: "#3535cc",
-    colorB: "#abaadd",
+    colorB: "#c2bfbf",
   });
 
   const planeInTl = useRef();
@@ -443,17 +417,17 @@ We have a wide range of beverages!`,
     tl.current.to(backgroundColors.current, {
       duration: 1,
       colorA: "#6f35cc",
-      colorB: "#ffad30",
+      colorB: "#c2bfbf",
     });
     tl.current.to(backgroundColors.current, {
       duration: 1,
       colorA: "#424242",
-      colorB: "#ffcc00",
+      colorB: "#c2bfbf",
     });
     tl.current.to(backgroundColors.current, {
       duration: 1,
       colorA: "#81318b",
-      colorB: "#55ab8f",
+      colorB: "#c2bfbf",
     });
 
     tl.current.pause();
@@ -516,12 +490,7 @@ We have a wide range of beverages!`,
           </group>
           <group ref={airplane}>
             <Float floatIntensity={1} speed={1.5} rotationIntensity={0.5}>
-              <Airplane
-                rotation-y={Math.PI / 2}
-                scale={[0.2, 0.2, 0.2]}
-                position-y={0.1}
-              />
-              <PaperPlane rotation-y={Math.PI / 2} scale={[3, 3, 3]} position-y={0.3} />
+              <PaperPlane rotation-y={Math.PI / 2} scale={[4, 4, 4]} position-y={0} />
             </Float>
           </group>
         </group>
@@ -557,6 +526,20 @@ We have a wide range of beverages!`,
         {clouds.map((cloud, index) => (
           <Cloud sceneOpacity={sceneOpacity} {...cloud} key={index} />
         ))}
+
+        {/* EAMES */}
+        {
+          eames.map((eames, index) => (
+            <Eames sceneOpacity={sceneOpacity} {...eames} key={index} />
+          ))
+        }
+
+        {/* SOFA */}
+        {
+          sofas.map((sofa, index) => (
+            <Sofa sceneOpacity={sceneOpacity} {...sofa} key={index} />
+          ))
+        }
       </>
     ),
     []
