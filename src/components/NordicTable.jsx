@@ -45,4 +45,4 @@ export function NordicTable({ sceneOpacity, ...props }) {
   )
 }
 
-useGLTF.preload('./Models/nordic_table.glb')
+useGLTF.preload('./Models/nordicTable.gltf')

@@ -16,7 +16,7 @@ import { PaperPlane } from "./PaperPlane";
 
 import { Eames } from "./Eames";
 import { Sofa } from "./Sofa";
-import { TableCoffe } from "./TableCoffe";
+import { Tablecoffe } from "./Tablecoffe";
 import { LampFloor } from "./LampFloor";
 import { NordicTable } from "./NordicTable";
 
@@ -320,14 +320,11 @@ export const Experience = () => {
   const { play, setHasScroll, end, setEnd } = usePlay();
 
   useFrame((_state, delta) => {
-    console.log(window.innerWidth + ">" + window.innerHeight);
     if (window.innerWidth > window.innerHeight) {
-      console.log("landscape");
       // LANDSCAPE
       camera.current.fov = 30;
       camera.current.position.z = 5;
     } else {
-      console.log("PORTRAIT");
       // PORTRAIT
       camera.current.fov = 80;
       camera.current.position.z = 7;
@@ -613,7 +610,7 @@ export const Experience = () => {
         {/* COFFE TABLE */}
         {
           tablesCoffe.map((table, index) => (
-            <TableCoffe sceneOpacity={sceneOpacity} {...table} key={index} />
+            <Tablecoffe sceneOpacity={sceneOpacity} {...table} key={index} />
           ))
         }
 

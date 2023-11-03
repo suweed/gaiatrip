@@ -8,7 +8,7 @@ import { useGLTF } from '@react-three/drei'
 import { fadeOnBeforeCompile } from '../utils/fadeMaterial';
 import { useFrame } from '@react-three/fiber';
 
-export function TableCoffe({ sceneOpacity, ...props }) {
+export function Tablecoffe({ sceneOpacity, ...props }) {
   const { nodes, materials } = useGLTF('./Models/tablecoffe.gltf')
 
   const materialRef = useRef();
