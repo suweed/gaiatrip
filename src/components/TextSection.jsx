@@ -1,12 +1,12 @@
 import { Text } from "@react-three/drei";
 import { fadeOnBeforeCompileFlat } from "../utils/fadeMaterial";
 
-export const TextSection = ({ title, subtitle, ...props }) => {
+export const TextSection = ({ title, subtitle, color1, color2, ...props }) => {
   return (
     <group {...props}>
       {!!title && (
         <Text
-          color="white"
+          color={color1}
           anchorX={"left"}
           anchorY="bottom"
           fontSize={0.52}
@@ -16,14 +16,14 @@ export const TextSection = ({ title, subtitle, ...props }) => {
         >
           {title}
           <meshStandardMaterial
-            color={"white"}
+            color={color1}
             onBeforeCompile={fadeOnBeforeCompileFlat}
           />
         </Text>
       )}
 
       <Text
-        color="white"
+        color={color2}
         anchorX={"left"}
         anchorY="top"
         fontSize={0.2}
@@ -32,7 +32,7 @@ export const TextSection = ({ title, subtitle, ...props }) => {
       >
         {subtitle}
         <meshStandardMaterial
-          color={"white"}
+          color={color2}
           onBeforeCompile={fadeOnBeforeCompileFlat}
         />
       </Text>

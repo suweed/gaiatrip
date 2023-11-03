@@ -1,4 +1,4 @@
-import { Float, PerspectiveCamera, useScroll } from "@react-three/drei";
+import { Float, OrbitControls, PerspectiveCamera, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { gsap } from "gsap";
 import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
@@ -13,8 +13,12 @@ import { Speed } from "./Speed";
 import { TextSection } from "./TextSection";
 
 import { PaperPlane } from "./PaperPlane";
+
 import { Eames } from "./Eames";
 import { Sofa } from "./Sofa";
+import { TableCoffe } from "./TableCoffe";
+import { LampFloor } from "./LampFloor";
+import { NordicTable } from "./NordicTable";
 
 const LINE_NB_POINTS = 2000;
 const CURVE_DISTANCE = 250;
@@ -50,23 +54,26 @@ export const Experience = () => {
       {
         cameraRailDist: -1,
         position: new Vector3(
-          curvePoints[1].x - 3,
+          curvePoints[1].x - 2.5,
           curvePoints[1].y,
-          curvePoints[1].z
+          curvePoints[1].z + 2
         ),
-        subtitle: `Welcome to Wawatmos,
-Have a seat and enjoy the ride!`,
+        title: "Bienvenido",
+        subtitle: "mensaje chido para bienvenida",
+        color1: "red",
+        color2: "blue"
       },
       {
         cameraRailDist: 1.5,
         position: new Vector3(
-          curvePoints[2].x + 2,
+          curvePoints[2].x + 1,
           curvePoints[2].y,
           curvePoints[2].z
         ),
-        title: "Services",
-        subtitle: `Do you want a drink?
-We have a wide range of beverages!`,
+        title: "Servicios",
+        subtitle: "Mensaje para segundo texto",
+        color1: "red",
+        color2: "white"
       },
       {
         cameraRailDist: -1,
@@ -75,8 +82,10 @@ We have a wide range of beverages!`,
           curvePoints[3].y,
           curvePoints[3].z
         ),
-        title: "Fear of flying?",
-        subtitle: `Our flight attendants will help you have a great journey`,
+        title: "Tiendas",
+        subtitle: "Mensaje para tercer texto",
+        color1: "red",
+        color2: "white"
       },
       {
         cameraRailDist: 1.5,
@@ -85,8 +94,10 @@ We have a wide range of beverages!`,
           curvePoints[4].y,
           curvePoints[4].z - 12
         ),
-        title: "Movies",
-        subtitle: `We provide a large selection of medias, we highly recommend you Porco Rosso during the flight`,
+        title: "Diseña",
+        subtitle: "Mensaje para cuarto texto",
+        color1: "red",
+        color2: "white"
       },
     ];
   }, []);
@@ -112,19 +123,11 @@ We have a wide range of beverages!`,
       // FIRST POINT
       {
         rotation: new Euler(0, Math.PI / 7, Math.PI / 5),
-        scale: new Vector3(5, 5, 5),
+        scale: new Vector3(2, 2, 2),
         position: new Vector3(
           curvePoints[1].x - 13,
           curvePoints[1].y + 4,
           curvePoints[1].z - 62
-        ),
-      },
-      {
-        scale: new Vector3(5, 5, 5),
-        position: new Vector3(
-          curvePoints[1].x + 8,
-          curvePoints[1].y - 14,
-          curvePoints[1].z - 22
         ),
       },
       // SECOND POINT
@@ -208,15 +211,24 @@ We have a wide range of beverages!`,
   const eames = useMemo(
     () => [
       {
-        rotation: new Euler(-Math.PI / 2, 0, 1),
+        rotation: new Euler(-Math.PI / 3, 0, 1),
         position: new Vector3(-2.5, -2.5, -7),
         scale: new Vector3(0.3, 0.3, 0.3),
       },
       {
-        rotation: new Euler(-Math.PI / 2, 0, -1),
-        position: new Vector3(10, 3, -49),
-        scale: new Vector3(0.3, 0.3, 0.3),
-      }
+        rotation: new Euler(-Math.PI / 3.7, 1, -1),
+        position: new Vector3(6, 3, -51),
+        scale: new Vector3(0.4, 0.4, 0.4),
+      },
+      {
+        scale: new Vector3(0.16, 0.16, 0.16),
+        rotation: new Euler(-Math.PI / 2, 0, -0.4),
+        position: new Vector3(
+          curvePoints[2].x + 6,
+          curvePoints[2].y - 4,
+          curvePoints[2].z - 8
+        ),
+      },
     ],
     []
   );
@@ -226,16 +238,70 @@ We have a wide range of beverages!`,
       {
         scale: new Vector3(5, 5, 5),
         position: new Vector3(-17, 4, -65),
-        rotation: new Euler(0, 1, 0),
+        rotation: new Euler(Math.PI / 2, Math.PI / 2.8, -Math.PI / 3),
       },
       {
         scale: new Vector3(2.5, 2.5, 2.5),
-        position: new Vector3(4.5, -2.7, -10.2),
-        rotation: new Euler(0, -0.5, 0),
+        position: new Vector3(4, -3.5, -10.2),
+        rotation: new Euler(0, -0.5, -0.3),
+      },
+      {
+        rotation: new Euler(0, 1, 0),
+        scale: new Vector3(5, 5, 5),
+        position: new Vector3(
+          curvePoints[1].x - 2,
+          curvePoints[1].y - 7,
+          curvePoints[1].z - 62
+        ),
       },
     ],
     []
   );
+
+  const tablesCoffe = useMemo(
+    () => [
+      {
+        rotation: new Euler(0, -0.6, 0),
+        scale: new Vector3(1, 1, 1),
+        position: new Vector3(
+          curvePoints[1].x + 4,
+          curvePoints[1].y - 7,
+          curvePoints[1].z - 54
+        ),
+      },
+    ],
+    []
+  )
+
+  const lampsFloor = useMemo(
+    () => [
+      {
+        rotation: new Euler(0, -0.6, 0),
+        scale: new Vector3(0.15, 0.15, 0.1),
+        position: new Vector3(
+          curvePoints[1].x + 3,
+          curvePoints[1].y - 9,
+          curvePoints[1].z - 95
+        ),
+      },
+    ],
+    []
+  )
+
+  const nordicTable = useMemo(
+    () => [
+      {
+        rotation: [0, 0.3, 0],
+        scale: new Vector3(0.025, 0.018, 0.02),
+        position: new Vector3(
+          curvePoints[2].x + 4,
+          curvePoints[2].y - 3.5,
+          curvePoints[2].z - 5
+        ),
+      },
+    ],
+    []
+  )
 
   const shape = useMemo(() => {
     const shape = new THREE.Shape();
@@ -254,14 +320,17 @@ We have a wide range of beverages!`,
   const { play, setHasScroll, end, setEnd } = usePlay();
 
   useFrame((_state, delta) => {
+    console.log(window.innerWidth + ">" + window.innerHeight);
     if (window.innerWidth > window.innerHeight) {
+      console.log("landscape");
       // LANDSCAPE
       camera.current.fov = 30;
       camera.current.position.z = 5;
     } else {
+      console.log("PORTRAIT");
       // PORTRAIT
       camera.current.fov = 80;
-      camera.current.position.z = 3;
+      camera.current.position.z = 7;
     }
 
     if (lastScroll.current <= 0 && scroll.offset > 0) {
@@ -538,6 +607,27 @@ We have a wide range of beverages!`,
         {
           sofas.map((sofa, index) => (
             <Sofa sceneOpacity={sceneOpacity} {...sofa} key={index} />
+          ))
+        }
+
+        {/* COFFE TABLE */}
+        {
+          tablesCoffe.map((table, index) => (
+            <TableCoffe sceneOpacity={sceneOpacity} {...table} key={index} />
+          ))
+        }
+
+        {/* LAMP */}
+        {
+          lampsFloor.map((lamp, index) => (
+            <LampFloor sceneOpacity={sceneOpacity} {...lamp} key={index} />
+          ))
+        }
+
+        {/* NORDIC TABLE */}
+        {
+          nordicTable.map((table, index) => (
+            <NordicTable sceneOpacity={sceneOpacity} {...table} key={index} />
           ))
         }
       </>
